@@ -5,6 +5,9 @@ import 'package:flutter_application_1/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_notification_channel/flutter_notification_channel.dart';
+import 'package:flutter_notification_channel/notification_importance.dart';
+import 'package:flutter_notification_channel/notification_visibility.dart';
 import 'firebase_options.dart';
 
 // Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -23,6 +26,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  notificationchannel();
   // intializefirebse();
   // FirebaseMessaging messaging = FirebaseMessaging.instance;
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -88,6 +92,15 @@ void configLoading() {
   // ..customAnimation = CustomAnimation();
 }
 
+notificationchannel() async {
+  var result = await FlutterNotificationChannel.registerNotificationChannel(
+    description: 'Your channel description',
+    id: 'chats',
+    importance: NotificationImportance.IMPORTANCE_HIGH,
+    name: 'Chats',
+  );
+  print(result);
+}
 // intializefirebse() async {
 //   await
 //   // options:

@@ -28,26 +28,33 @@ class _splahscreenState extends State<splahscreen> {
           'Welcome to Food game ',
         ),
       ),
-      body: Stack(
-        alignment: Alignment.center,
+      body: Column(
         children: [
-          Positioned(
-              width: 200,
-              height: 200,
-              top: 40,
-              child: Image.asset('images/animal.png')),
-          Positioned(
-              width: 250,
-              height: 40,
-              top: 400,
-              child: Text(
-                "Made by AMAN SINGH",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontWeight: FontWeight.bold),
-              )),
+          Text(
+            'Welcome to Food game ',
+          ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                  width: 200,
+                  height: 200,
+                  top: 40,
+                  child: Image.asset('images/animal.png')),
+              Positioned(
+                  width: 250,
+                  height: 40,
+                  top: 400,
+                  child: Text(
+                    "Made by AMAN SINGH",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.bold),
+                  )),
+            ],
+          ),
         ],
       ),
     );

@@ -42,7 +42,7 @@ class _profilescreenState extends State<profilescreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Food Game ',
+          'Donate Blood',
         ),
       ),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),

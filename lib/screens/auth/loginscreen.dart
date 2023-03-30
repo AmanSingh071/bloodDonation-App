@@ -31,7 +31,8 @@ class _loginscreenState extends State<loginscreen> {
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (_) => const mainhomescreen()));
         } else {
-          await apis.createuser().then((value) {
+          await apis.createuser().then((value) async {
+            await apis.setlocation();
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (_) => const mainhomescreen()));
           });
@@ -69,24 +70,24 @@ class _loginscreenState extends State<loginscreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Welcome to Food game ',
+          'Welcome to Blood Donation APP ',
         ),
       ),
       body: Stack(
         alignment: Alignment.center,
         children: [
           Positioned(
-              width: 200,
-              height: 200,
-              top: 40,
-              child: Image.asset('images/animal.png')),
+              width: 400,
+              height: 800,
+              bottom: 190,
+              child: Image.asset('images/blood_donate.png')),
           Positioned(
               width: 250,
               height: 40,
               top: 400,
               child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 6, 165, 67),
+                      backgroundColor: Color.fromARGB(255, 255, 0, 0),
                       shape: StadiumBorder()),
                   onPressed: () {
                     // Navigator.pushReplacement(context,

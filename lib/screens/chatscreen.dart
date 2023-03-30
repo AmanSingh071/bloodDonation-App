@@ -10,6 +10,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_application_1/api/apis.dart';
 import 'package:flutter_application_1/models/chatuser.dart';
 import 'package:flutter_application_1/models/message.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../widgets/message__card.dart';
 
@@ -153,6 +155,13 @@ class _chatscreenState extends State<chatscreen> {
                         border: InputBorder.none),
                   )),
                   IconButton(
+                    onPressed: () {
+                      _livelocation();
+                    },
+                    icon: Icon(Icons.location_on),
+                    color: Colors.blue,
+                  ),
+                  IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.image),
                     color: Colors.blue,
@@ -221,5 +230,20 @@ class _chatscreenState extends State<chatscreen> {
         )
       ],
     );
+  }
+
+  Future<void> _livelocation() async {
+    LocationSettings locationSettings =
+        LocationSettings(accuracy: LocationAccuracy.high, distanceFilter: 100);
+    String lat = widget.user.latitute;
+    String longi = widget.user.longitude;
+
+    String googleURL =
+        'https://www.google.com/maps/search/?api=1&query=$lat,$longi';
+    await canLaunchUrlString(googleURL)
+        ? await launchUrlString(googleURL)
+        : throw 'could not show location $googleURL';
+    // Geolocator.getPositionStream(locationSettings: locationSettings)
+    //     .listen((Position position) {});
   }
 }

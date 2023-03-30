@@ -15,6 +15,7 @@ import 'package:flutter_application_1/helper/dialogs.dart';
 import 'package:flutter_application_1/models/chatuser.dart';
 import 'package:flutter_application_1/screens/auth/loginscreen.dart';
 import 'package:flutter_application_1/screens/profile%20screen.dart';
+import 'package:flutter_application_1/screens/splash_screen.dart';
 import 'package:flutter_application_1/widgets/chat_user_card.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -112,7 +113,7 @@ class _mainhomescreenState extends State<mainhomescreen> {
                   icon: Icon(Icons.more_vert))
             ],
           ),
-          backgroundColor: Colors.amber,
+          backgroundColor: Color.fromARGB(255, 255, 0, 0),
           floatingActionButton: Padding(
             padding: const EdgeInsets.only(),
             child: FloatingActionButton(
@@ -121,7 +122,7 @@ class _mainhomescreenState extends State<mainhomescreen> {
                 await apis.auth.signOut().then((value) async {
                   await GoogleSignIn().signOut().then((value) {
                     Navigator.pop(context);
-                    Navigator.pop(context);
+
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) => const loginscreen()));
                   });

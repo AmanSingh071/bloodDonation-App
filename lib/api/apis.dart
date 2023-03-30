@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/chatuser.dart';
 import 'package:flutter_application_1/models/message.dart';
 import 'package:http/http.dart';
+import 'package:location/location.dart';
 
 class apis {
   static late Chatuser me;
@@ -85,8 +86,27 @@ class apis {
     });
   }
 
+  static Future<void> setlocation() async {
+    var lati;
+    var longi;
+    Location location = new Location();
+    location.onLocationChanged.listen((LocationData currentLocation) async {
+      if (currentLocation.latitude != null &&
+          currentLocation.longitude != null) {
+        lati = currentLocation.latitude;
+        longi = currentLocation.longitude;
+        log('message $lati ,$longi,$user.uid');
+        await firestore.collection('users').doc(user.uid).update({
+          'latitute': lati.toString(),
+          'longitude': longi.toString(),
+        });
+      }
+    });
+  }
+
   static Future<void> createuser() async {
     final time = DateTime.now().millisecondsSinceEpoch.toString();
+
     final chatuser = Chatuser(
         id: user.uid,
         name: user.displayName.toString(),
@@ -96,7 +116,10 @@ class apis {
         createdAt: time,
         isOnline: false,
         lastActive: time,
-        pushToken: '');
+        pushToken: '',
+        latitute: 'lati',
+        longitude: 'longi');
+
     return await firestore
         .collection('users')
         .doc(user.uid)

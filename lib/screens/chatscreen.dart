@@ -50,6 +50,24 @@ class _chatscreenState extends State<chatscreen> {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               flexibleSpace: _appbar(),
+              actions: [
+                PopupMenuButton(
+                  itemBuilder: (_) => [
+                    PopupMenuItem(
+                        value: 0,
+                        child: Row(
+                          children: [
+                            Text("See the Location"),
+                            IconButton(
+                                onPressed: () {}, icon: Icon(Icons.location_on))
+                          ],
+                        ))
+                  ],
+                  onSelected: (value) {
+                    _livelocation();
+                  },
+                )
+              ],
             ),
             body: Column(
               children: [
